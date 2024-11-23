@@ -6,6 +6,7 @@ import dotenv from "dotenv"
 import connectDB from "./db/conn.mjs";
 
 //import routes
+import entryRoute from './route/entryRoutes.mjs';
 
 //import data
 
@@ -24,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ extended: true }))
 
 //routes
-app.use('/journal', entriesRoutes)
+app.use('/journal', entryRoute)
 
 //seed 
 
