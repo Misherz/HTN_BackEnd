@@ -48,3 +48,17 @@ router.get('/journal:id', async (req, res) => {
         res.status(500).json({msg: 'Server error'});
     }
 });
+
+// Update
+router.patch('/journal:id', async (req, res) => {
+    try {
+
+        let updateEntry = await Entries.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+        res.json(updateEntry);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({msg: 'Server error'});
+    }
+});
