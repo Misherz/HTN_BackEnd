@@ -78,3 +78,5 @@ router.delete('/journal:id', async (req, res) => {
     }
 });
 
+export default router;
+
