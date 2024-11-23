@@ -12,8 +12,12 @@ import connectDB from "./db/conn.mjs";
 //schemas
 
 //setup
+const app = express();
+dotenv.config()
+let PORT = process.env.PORT || 3001;
 
 //connect()
+connectDB()
 
 //middleware
 
