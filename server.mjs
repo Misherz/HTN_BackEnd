@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import dotenv from "dotenv"
 
 //import DB connections
+import connectDB from "./db/conn.mjs";
 
 //import routes
 
