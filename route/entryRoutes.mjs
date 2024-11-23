@@ -4,7 +4,7 @@ import journalEntries from '../models/entriesSchema.mjs';
 const router = express.Router();
 
 // Create
-router.post('/journal', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
 
         let newEntry = new Entries(req.body);
@@ -22,7 +22,7 @@ router.post('/journal', async (req, res) => {
 
 
 // Read
-router.get('/journal', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
 
         let allEntries = await Entries.find({});
@@ -36,7 +36,7 @@ router.get('/journal', async (req, res) => {
 });
 
 // Read by ID
-router.get('/journal:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
 
         let oneEntry = await Entries.findById(req.params.id);
@@ -50,7 +50,7 @@ router.get('/journal:id', async (req, res) => {
 });
 
 // Update
-router.patch('/journal:id', async (req, res) => {
+router.patch('/:id', async (req, res) => {
     try {
 
         let updateEntry = await Entries.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -65,7 +65,7 @@ router.patch('/journal:id', async (req, res) => {
 
 
 // Delete
-router.delete('/journal:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
 
         let deleteEntry = await Entries.findByIdAndDelete(req.params.id);
@@ -77,6 +77,4 @@ router.delete('/journal:id', async (req, res) => {
         res.status(500).json({msg: 'Server error'});
     }
 });
-
-export default router;
 
