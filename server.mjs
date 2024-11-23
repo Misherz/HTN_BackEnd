@@ -24,8 +24,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ extended: true }))
 
 //routes
-// app.use('/entries', entriesRoutes)
+app.use('/journal', entriesRoutes)
 
 //seed 
 
 //listener
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
