@@ -62,3 +62,19 @@ router.patch('/journal:id', async (req, res) => {
         res.status(500).json({msg: 'Server error'});
     }
 });
+
+
+// Delete
+router.delete('/journal:id', async (req, res) => {
+    try {
+
+        let deleteEntry = await Entries.findByIdAndDelete(req.params.id);
+        
+        res.json(deleteEntry);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({msg: 'Server error'});
+    }
+});
+
