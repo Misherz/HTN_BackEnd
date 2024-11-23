@@ -18,3 +18,19 @@ router.post('/journal', async (req, res) => {
         res.status(500).json({msg: 'Server error'});
     }
 });
+
+
+
+// Read
+router.get('/journal', async (req, res) => {
+    try {
+
+        let allEntries = await Entries.find({});
+
+        res.json(allEntries);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({msg: 'Server error'});
+    }
+});
