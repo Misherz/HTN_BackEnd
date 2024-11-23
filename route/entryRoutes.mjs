@@ -34,3 +34,17 @@ router.get('/journal', async (req, res) => {
         res.status(500).json({msg: 'Server error'});
     }
 });
+
+// Read by ID
+router.get('/journal:id', async (req, res) => {
+    try {
+
+        let oneEntry = await Entries.findById(req.params.id);
+
+        res.json(oneEntry);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({msg: 'Server error'});
+    }
+});
