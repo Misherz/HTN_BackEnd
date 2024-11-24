@@ -2,13 +2,15 @@ import express from "express";
 import bodyParser from 'body-parser';
 import dotenv from "dotenv"
 
+
 //import DB connections
 import connectDB from "./db/conn.mjs";
 
 //import routes
 import entryRoute from './route/entryRoutes.mjs';
 
-//import data
+import cors from 'cors';
+import morgan from 'morgan';
 
 //schemas
 
@@ -33,10 +35,10 @@ app.use('/journal', entryRoute)
 app.get('/seed/journal', async (req, res) => {
     //optional
 
-    await SpookyCharacters.deleteMany({});
+    await journalEntries.deleteMany({});
 
     //create items in database
-    await SpookyCharacters.create(characters);
+    await journalEntries.create(Entries);
 
     res.send('Seeding database');
 
