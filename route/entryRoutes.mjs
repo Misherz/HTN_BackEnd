@@ -4,7 +4,7 @@ import journalCTRL from '../controller/journalController.mjs'
 
 const router = express.Router();
 
-router.route('/seed').get(journalCTRL.seedDB)
+// router.route('/seed').get(journalCTRL.seedDB)
 
 // Create
 router
