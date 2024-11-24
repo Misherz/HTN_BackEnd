@@ -1,3 +1,6 @@
+import journalEntries from '../models/entriesSchema.mjs'
+
+//post
 async function createEntry(req, res){
     try {
 
@@ -13,6 +16,7 @@ async function createEntry(req, res){
     }
 };
 
+//get
 async function getAllEntry(req, res){
     try {
 
@@ -64,4 +68,23 @@ async function deleteEntry(req, res){
         res.status(500).json({msg: 'Server error'});
     }
 };
-export default ( createEntry, getAllEntry, getOneEntry, updateOneEntry, deleteEntry)
+
+async function seedDB(req, res) {
+    try {
+        await Entries.create(Entry);
+
+        res.json({msg: "DB Seeded"})
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({msg: 'Server error'});
+    }
+}
+
+
+export default {
+  createEntry,
+  getAllEntry,
+  getOneEntry,
+  updateOneEntry,
+  deleteEntry
+};
