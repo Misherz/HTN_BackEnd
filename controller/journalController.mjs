@@ -1,4 +1,5 @@
-import journalEntries from '../models/entriesSchema.mjs'
+import Entries from '../models/entriesSchema.mjs'
+import entries from '../data/data.mjs'
 
 //post
 async function createEntry(req, res){
@@ -17,7 +18,7 @@ async function createEntry(req, res){
 };
 
 //get
-async function getAllEntry(req, res){
+async function getAllEntries(req, res) {
     try {
 
         let allEntries = await Entries.find({});
@@ -27,7 +28,7 @@ async function getAllEntry(req, res){
     } catch (err) {
         console.error(err);
         res.status(500).json({msg: 'Server error'});
-    }
+    };
 };
 
 async function getOneEntry(req, res){
@@ -61,7 +62,7 @@ async function deleteEntry(req, res){
 
         let deleteEntry = await Entries.findByIdAndDelete(req.params.id);
         
-        res.json(deleteEntry);
+        res.json({ msg: 'Item Deleted' }); 
 
     } catch (err) {
         console.error(err);
@@ -71,7 +72,8 @@ async function deleteEntry(req, res){
 
 async function seedDB(req, res) {
     try {
-        await Entries.create(Entry);
+        await Entries.deleteMany({}); //delete and reseed to avoid duplicates
+        await Entries.create(entries);
 
         res.json({msg: "DB Seeded"})
     } catch (err) {
@@ -83,8 +85,9 @@ async function seedDB(req, res) {
 
 export default {
   createEntry,
-  getAllEntry,
+  getAllEntries,
   getOneEntry,
   updateOneEntry,
-  deleteEntry
+  deleteEntry,
+  seedDB
 };

@@ -32,17 +32,17 @@ app.use(bodyParser.json({ extended: true }))
 app.use('/journal', entryRoute)
 
 //seed 
-app.get('/seed/journal', async (req, res) => {
-    //optional
+// app.get('/seed/journal', async (req, res) => {
+//     //optional
 
-    await journalEntries.deleteMany({});
+//     await journalEntries.deleteMany({});
 
-    //create items in database
-    await journalEntries.create(Entries);
+//     //create items in database
+//     await journalEntries.create(Entries);
 
-    res.send('Seeding database');
+//     res.send('Seeding database');
 
-})
+// })
 
 
 
