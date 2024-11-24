@@ -1,9 +1,67 @@
-async function (){};
+async function createEntry(req, res){
+    try {
 
-async function (){};
+        let newEntry = new Entries(req.body);
 
-async function (){};
+        await newEntry.save();
 
-async function (){};
+        res.status(200).json(newEntry);
 
-export default ( , , , ,)
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({msg: 'Server error'});
+    }
+};
+
+async function getAllEntry(req, res){
+    try {
+
+        let allEntries = await Entries.find({});
+
+        res.json(allEntries);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({msg: 'Server error'});
+    }
+};
+
+async function getOneEntry(req, res){
+    try {
+
+        let oneEntry = await Entries.findById(req.params.id);
+
+        res.json(oneEntry);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({msg: 'Server error'});
+    }
+};
+
+async function updateOneEntry(req, res){
+    try {
+
+        let updateEntry = await Entries.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+        res.json(updateEntry);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({msg: 'Server error'});
+    }
+};
+
+async function deleteEntry(req, res){
+    try {
+
+        let deleteEntry = await Entries.findByIdAndDelete(req.params.id);
+        
+        res.json(deleteEntry);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({msg: 'Server error'});
+    }
+};
+export default ( createEntry, getAllEntry, getOneEntry, updateOneEntry, deleteEntry)
