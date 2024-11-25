@@ -3,9 +3,11 @@ import mongoose from "mongoose";
 const journalEntries = new mongoose.Schema({
     mood: { 
         type: String, 
+        default: "" //optional parameters, if none is inputted, return an empty string
     }, 
     subject: { 
         type: String,
+        default: ""
     },
     entry: { 
         type: String,

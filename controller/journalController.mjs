@@ -57,18 +57,33 @@ async function updateOneEntry(req, res){
     }
 };
 
-async function deleteEntry(req, res){
-    try {
+// async function deleteEntry(req, res){
+//     try {
 
-        let deleteEntry = await Entries.findByIdAndDelete(req.params.id);
+//         let deleteEntry = await Entries.findByIdAndDelete(req.params.id);
         
-        res.json({ msg: 'Item Deleted' }); 
+//         res.json({ msg: 'Item Deleted' }); 
 
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({msg: 'Server error'});
+//     }
+// };
+
+async function deleteEntry(req, res) {
+    try {
+        const entry = await Entries.findByIdAndDelete(req.params.id);
+        
+        if (!entry) {
+            return res.status(404).json({ msg: 'Entry not found' });
+        }
+
+        res.json({ msg: 'Item Deleted' });
     } catch (err) {
         console.error(err);
-        res.status(500).json({msg: 'Server error'});
+        res.status(500).json({ msg: 'Server error' });
     }
-};
+}
 
 async function seedDB(req, res) {
     try {
