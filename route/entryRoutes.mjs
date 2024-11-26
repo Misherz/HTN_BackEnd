@@ -16,7 +16,6 @@ router
     .route('/:id')
     .get(journalCTRL.getOneEntry)
     .patch(journalCTRL.updateOneEntry)
-    .delete(journalCTRL.deleteEntry)
-
+    .delete(journalCTRL.deleteEntry);
 
 export default router;

@@ -1,5 +1,5 @@
 import Entries from '../models/entriesSchema.mjs'
-import entries from '../data/data.mjs'
+import mongoose from 'mongoose';
 
 //post
 async function createEntry(req, res){
@@ -71,6 +71,12 @@ async function updateOneEntry(req, res){
 // };
 
 async function deleteEntry(req, res) {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ msg: 'Invalid ID format' });
+    }
+
     try {
         const entry = await Entries.findByIdAndDelete(req.params.id);
         
